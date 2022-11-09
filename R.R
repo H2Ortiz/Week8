@@ -34,5 +34,31 @@ beta = solve(t(x)%*%x) %*% (t(x)%*%y)
 ### Question 3 ####
 # will return in the afternoon
 
+# make a function to calculate rss for each of the values in the grid
+rssCalc <- function(y, predValue){sum((predValue-y)^2)}
+
+# setting grid search around a slope of 0.8
+b1_slope <- seq(0, 1.6, 0.1)
+b0_intercept <- seq(0, 10, 0.1)
+
+gridMatrix = matrix(data = NA, nrow = length(b0_intercept), ncol = length(b1_slope),
+                    dimnames = list(b0_intercept, b1_slope))
+
+for(i in 1:nrow(gridMatrix)){
+    b0Temp = as.numeric(rownames(gridMatrix)[i])
+    print(b0Temp)
+    for(j in 1:ncol(gridMatrix)){
+        b1Temp = as.numeric(colnames(gridMatrix)[j])
+        
+        pred_value = b0Temp + b1Temp*x
+         gridMatrix[i, j] = rssCalc(y, pred_value)
+        
+        print(paste(b0Temp, b1Temp))
+    }
+}
+
+
+# find the minimum value in the grid we calculated
+
 
 
