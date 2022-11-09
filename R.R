@@ -27,3 +27,12 @@ autoplot(lin_model)
 
 plot(residuals(lin_model)~fitted(lin_model))
 
+### Estimate using the normal equation
+
+beta = solve(t(x)%*%x) %*% (t(x)%*%y)
+
+### Question 3 ####
+# will return in the afternoon
+
+
+
